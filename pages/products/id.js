@@ -181,7 +181,7 @@ function Product({ product }) {
 export default Product;
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
+  const res = await fetch(`https://fakestoreapi.com/products`);
   const results = await res.json();
 
   return {
@@ -190,21 +190,3 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-
-// export async function getStaticPaths() {
-//   const res = await fetch("https://fakestoreapi.com/products");
-//   const products = await res.json();
-
-//   const paths = products.map((product) => {
-//     return {
-//       params: {
-//         id: product.id,
-//       },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
