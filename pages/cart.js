@@ -10,7 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useDispatch } from "react-redux";
@@ -25,6 +25,19 @@ import RemoveIcon from "@mui/icons-material/Remove";
 function Cart() {
   const { cartItems, total, amount } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
+
+  // console.log(products.rating);
+
+  // console.time(products);
+
+  // useEffect(() => {
+  //   dispatch(cartTotal);
+  // }, [cartItems]);
+  let totalVal = cartItems
+    .reduce((acc, item) => acc + item.price, 0)
+    .toFixed(2);
+  // console.log();
+
   return (
     <Box>
       <Toolbar />
@@ -64,7 +77,7 @@ function Cart() {
                       ({ title, id, price, category, image, rating }) => (
                         <Grid key={id} item xs={12}>
                           <Grid container sx={{ paddingY: "1.5rem" }}>
-                            <Grid item xs={3}>
+                            <Grid item xs={4} sx={{ padding: "1rem" }}>
                               <Box
                                 sx={{
                                   height: "7rem",
@@ -80,24 +93,33 @@ function Cart() {
                                 />
                               </Box>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={5}>
                               {/* info */}
 
-                              <Typography
-                                variant="h6"
+                              <Box
                                 sx={{
                                   fontSize: { xs: "1rem", sm: "1.125rem" },
-                                  paddingY: "0.6rem",
+                                  paddingY: "1.125rem",
                                   fontWeight: 400,
-                                  overflow: "hidden",
-                                  textOverflow: "ellipsis",
-                                  display: "-webkit-box",
-                                  WebkitLineClamp: 2,
-                                  WebkitBoxOrient: "vertical",
+                                  // overflow: "hidden",
                                 }}
                               >
-                                {title}
-                              </Typography>
+                                <Typography
+                                  variant="h6"
+                                  sx={{
+                                    fontSize: { xs: "1rem", sm: "1.125rem" },
+                                    // paddingY: "0.6rem",
+                                    fontWeight: 400,
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: 2,
+                                    WebkitBoxOrient: "vertical",
+                                  }}
+                                >
+                                  {title}
+                                </Typography>
+                              </Box>
                               <Typography
                                 variant="body"
                                 sx={{ fontSize: "1.125rem" }}
@@ -156,7 +178,7 @@ function Cart() {
                     <Typography variant="body1" sx={{ opacity: 0.6 }}>
                       Subtotal
                     </Typography>
-                    <Typography variant="body1">$ {cartTotal}</Typography>
+                    <Typography variant="body1">$ {totalVal}</Typography>
                   </Stack>
                   <Divider />
                 </Grid>

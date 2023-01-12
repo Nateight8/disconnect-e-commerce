@@ -13,9 +13,6 @@ import Products from "../Components/Products/Products";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ products }) {
-  // console.log(products.rating);
-
-  // console.table(products);
   return (
     <>
       <Head>

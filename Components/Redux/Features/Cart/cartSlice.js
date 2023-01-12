@@ -17,6 +17,8 @@ const cartSlice = createSlice({
     removeFromCart: (state, action) => {
       const itemId = action.payload;
       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
+
+      console.log(action);
     },
 
     increase: (state, action) => {
@@ -34,13 +36,9 @@ const cartSlice = createSlice({
     },
 
     cartTotal: (state) => {
-      let total = 0;
+      state.total = state.cartItems.reduce((acc, item) => acc + item.price, 0);
 
-      state.cartItems.forEach((item) => {
-        total += item.price;
-      });
-
-      state.total = total;
+      // cartItems.reduce((acc, item) => acc + item.price, 0);
     },
   },
 });
