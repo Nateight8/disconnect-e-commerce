@@ -43,7 +43,7 @@ function Product({ title, id, price, category, image, rating }) {
 
   function handleClick() {
     let x = dispatch(addToCart({ title, id, price, category, image, rating }));
-    console.log(x);
+    // console.log(x);
   }
 
   return (
